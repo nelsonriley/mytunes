@@ -1,11 +1,16 @@
 // LibraryView.js - Defines a backbone view class for the music library.
 var LibraryView = Backbone.View.extend({
 
-  tagName: "table",
+
+  tagName: 'table',
+
+
+
 
   initialize: function() {
     this.render();
   },
+
 
   render: function(){
     // to preserve event handlers on child nodes, we must call .detach() on them before overwriting with .html()
