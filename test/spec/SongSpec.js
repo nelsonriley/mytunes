@@ -31,7 +31,7 @@ describe('SongModel', function() {
     });
   });
 
-  xdescribe('ended', function() {
+  describe('ended', function() {
     it('triggers an "ended" event', function() {
       model.play();
       model.ended();
