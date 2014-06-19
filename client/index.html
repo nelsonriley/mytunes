@@ -21,6 +21,17 @@
     <script src="views/SongQueueView.js"></script>
     <script src="views/SongQueueEntryView.js"></script>
 
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+
+    <div class="container" style="padding-top: 50px;">
+        <div class="row">
+            <div class="col-md-4"></div>
+                <div id="app-container" class="col-md-4"></div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
     <script>
       $(function(){
         // set up model objects
@@ -31,7 +42,7 @@
         var appView = new AppView({model: app});
 
         // put the view onto the screen
-        $('body').append(appView.render());
+        $('#app-container').append(appView.render());
       });
     </script>
   </body>

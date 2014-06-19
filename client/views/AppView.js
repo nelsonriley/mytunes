@@ -15,9 +15,17 @@ var AppView = Backbone.View.extend({
 
   render: function(){
     return this.$el.html([
-      this.playerView.$el,
-      this.libraryView.$el,
-      this.songQueueView.$el
+      $('<div class="well"></div>')
+        .append(this.playerView.$el),
+      $('<div class="panel panel-default"></div>')
+        .append('<div class="panel-heading">Song Queue</div>')
+        .append($('<table class="table"></table>')
+          .append(this.songQueueView.$el)),
+      $('<div class="panel panel-default"></div>')
+        .append('<div class="panel-heading">Library</div>')
+        .append($('<table class="table"></table>')
+          .append('<thead><th>Artist</th><th>Song</th></thead>')
+          .append(this.libraryView.$el))
     ]);
   }
 
