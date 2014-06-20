@@ -3,7 +3,6 @@ var LibraryEntryView = Backbone.View.extend({
 
   initialize: function() {
     this.model.on('change', function() {
-      console.log('libraryEntryView listener');
       this.render();
     }, this);
   },
@@ -12,6 +11,10 @@ var LibraryEntryView = Backbone.View.extend({
 
   template: _.template('<td><%= artist %></td><td><%= title %></td>'),
 
+  // can't do it this way, but it would be nice :)
+  // tagName: 'div'    // the extra div breaks the bootstrap styling
+  // _.template('<tr <% if (typeof(isPlaying) !== "undefined" && isPlaying === true) { %> class="success" <% } %> ><td><%= artist %></td><td><%= title %></td></tr>'),
+
   events: {
     'click': function() {
       this.model.enqueue();
@@ -19,7 +22,8 @@ var LibraryEntryView = Backbone.View.extend({
   },
 
   render: function(){
-    //if model is playing
+    //render does not edit the container element by default, bc it may already exist in the dom
+    //render green if the model is playing
     if( this.model.get('isPlaying') === true ){
       //add a highlight class to model's container element
       this.$el.addClass('success');

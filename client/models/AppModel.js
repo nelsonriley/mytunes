@@ -23,7 +23,6 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     this.get('songQueue').on('add', function(){
-      console.log(this.get('songQueue').at(0));
       if (this.get('songQueue').length === 1) {
         this.setCurrentSong(this.get('songQueue').at(0));
       }
@@ -40,7 +39,6 @@ var AppModel = Backbone.Model.extend({
         this.setCurrentSong(this.get('songQueue').at(0));
       }
       song.set('isPlaying', false);
-      console.log('remove song', song.cid, song.attributes.isPlaying);
     }, this);
 
 
@@ -51,7 +49,6 @@ var AppModel = Backbone.Model.extend({
     this.get('currentSong').set('isPlaying', false);
     //update the model isPlaying attribute of song model that is now current song
     song.set('isPlaying', true);
-    console.log('expect true', song.cid, song.attributes.isPlaying);
     //update current song
     this.set('currentSong', song);
   }
