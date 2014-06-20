@@ -7,6 +7,9 @@ var SongQueueEntryView = Backbone.View.extend({
 
   initialize: function(){
     this.render();
+    this.model.on('change', function(){
+      this.render();
+    }, this);
   },
 
   events: {
@@ -18,6 +21,11 @@ var SongQueueEntryView = Backbone.View.extend({
   },
 
   render: function(){
+    if( this.model.get('isPlaying') === true ){
+      this.$el.addClass('success');
+    }else{
+      this.$el.removeClass('success');
+    }
     // render HTML by passing data to a template
     var html = this.template(this.model.attributes);
     // append result to this view's DOM element

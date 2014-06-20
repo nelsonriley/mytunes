@@ -23,23 +23,37 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     this.get('songQueue').on('add', function(){
+      console.log(this.get('songQueue').at(0));
       if (this.get('songQueue').length === 1) {
-        this.set('currentSong', this.get('songQueue').at(0));
+        this.setCurrentSong(this.get('songQueue').at(0));
       }
     }, this);
 
-    this.get('songQueue').on('remove', function(){
+    this.get('songQueue').on('remove', function(song){
       //if queue is empty
       if( this.get('songQueue').length === 0 ){
         // stop playing
-        this.set('currentSong', new SongModel({url: ''}));
+        this.setCurrentSong(new SongModel({url: ''}));
       //else if currentsong is not song at top of queue
       }else if( this.get('currentSong') !== this.get('songQueue').at(0) ){
         //play top of queue
-        this.set('currentSong', this.get('songQueue').at(0));
+        this.setCurrentSong(this.get('songQueue').at(0));
       }
+      song.set('isPlaying', false);
+      console.log('remove song', song.cid, song.attributes.isPlaying);
     }, this);
 
+
+  },
+
+  setCurrentSong: function(song){
+    //update old model to not be the playing one first
+    this.get('currentSong').set('isPlaying', false);
+    //update the model isPlaying attribute of song model that is now current song
+    song.set('isPlaying', true);
+    console.log('expect true', song.cid, song.attributes.isPlaying);
+    //update current song
+    this.set('currentSong', song);
   }
 
 });

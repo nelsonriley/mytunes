@@ -19,11 +19,11 @@ var AppView = Backbone.View.extend({
         .append(this.playerView.$el),
       $('<div class="panel panel-default"></div>')
         .append('<div class="panel-heading">Song Queue</div>')
-        .append($('<table class="table"></table>')
+        .append($('<table class="table table-hover"></table>')
           .append(this.songQueueView.$el)),
       $('<div class="panel panel-default"></div>')
         .append('<div class="panel-heading">Library</div>')
-        .append($('<table class="table"></table>')
+        .append($('<table class="table table-hover"></table>')
           .append('<thead><th>Artist</th><th>Song</th></thead>')
           .append(this.libraryView.$el))
     ]);
